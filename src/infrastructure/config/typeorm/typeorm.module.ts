@@ -14,7 +14,10 @@ export const getTypeOrmModuleOptions = (
     username: config.getDatabaseUser(),
     password: config.getDatabasePassword(),
     database: config.getDatabaseName(),
-    synchronize: config.getDatabaseSync(),
+    synchronize:
+      process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'test'
+        ? true
+        : false,
     logging:
       process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'test'
         ? true

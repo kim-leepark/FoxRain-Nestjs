@@ -1,13 +1,11 @@
 import { Expose } from 'class-transformer';
 
-export class Comment {
+export class Post {
   id: number;
+  title: string;
   content: string;
   created_at: Date;
 
   @Expose({ name: 'user_id' })
   userId: number;
-
-  @Expose({ name: 'post_id' })
-  postId: number;
 }
