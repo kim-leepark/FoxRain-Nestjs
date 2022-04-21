@@ -8,6 +8,6 @@ import { PostTypeOrmEntity } from '../entities/post.entity';
 export class DatabasePostRepository implements PostRepository {
   constructor(
     @InjectRepository(PostTypeOrmEntity)
-    private readonly postTypeOrmEntity: Repository<PostTypeOrmEntity>,
+    private readonly postEntityRepository: Repository<PostTypeOrmEntity>,
   ) {}
 }
