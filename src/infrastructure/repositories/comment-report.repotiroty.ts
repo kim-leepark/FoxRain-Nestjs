@@ -10,6 +10,6 @@ export class DatabaseCommentReportRepository
 {
   constructor(
     @InjectRepository(CommentReportTypeOrmEntity)
-    private readonly commentReportTypeOrmEntity: Repository<CommentReportTypeOrmEntity>,
+    private readonly commentReportEntityRepository: Repository<CommentReportTypeOrmEntity>,
   ) {}
 }
