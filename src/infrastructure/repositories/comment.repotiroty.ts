@@ -8,6 +8,6 @@ import { CommentTypeOrmEntity } from '../entities/comment.entity';
 export class DatabaseCommentRepository implements CommentRepository {
   constructor(
     @InjectRepository(CommentTypeOrmEntity)
-    private readonly commentTypeOrmEntity: Repository<CommentTypeOrmEntity>,
+    private readonly commentEntityRepository: Repository<CommentTypeOrmEntity>,
   ) {}
 }
