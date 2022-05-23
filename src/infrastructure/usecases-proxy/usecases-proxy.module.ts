@@ -2,6 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { LoginUsecase } from 'src/usecase/user/login';
 import { SignUpUsecase } from 'src/usecase/user/sign-up';
+import { UserInfoUsecase } from 'src/usecase/user/user-info';
 import { ExceptionsModule } from '../exceptions/exceptions.module';
 import { ExceptionsService } from '../exceptions/exceptions.service';
 import { LoggerModule } from '../logger/logger.module';
@@ -43,8 +44,16 @@ export class UsecasesProxyDynamicModule {
               jwtService,
             ),
         },
+        {
+          inject: [DatabaseUserRepository, ExceptionsService],
+          provide: UserInfoUsecase,
+          useFactory: (
+            databaseUserRepository: DatabaseUserRepository,
+            exceptionsService: ExceptionsService,
+          ) => new UserInfoUsecase(databaseUserRepository, exceptionsService),
+        },
       ],
-      exports: [SignUpUsecase, LoginUsecase],
+      exports: [SignUpUsecase, LoginUsecase, UserInfoUsecase],
     };
   }
 }
