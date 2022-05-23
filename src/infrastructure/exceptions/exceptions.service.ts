@@ -31,8 +31,11 @@ export class ExceptionsService implements IException {
   expiredTokenException(): void {
     throw new UnauthorizedException('Token expired exception');
   }
-  notFoundUserException(): void {
+  userNotFoundException(): void {
     throw new NotFoundException('User not found exception');
+  }
+  postNotFoundException(): void {
+    throw new NotFoundException('Post not found exception');
   }
   notConfirmPasswordException(): void {
     throw new ForbiddenException('Not confirm password exception');
