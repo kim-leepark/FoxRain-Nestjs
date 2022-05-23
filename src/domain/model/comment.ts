@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class Comment {
+export class CommentM {
   id: number;
   content: string;
   created_at: Date;
