@@ -3,6 +3,7 @@ import {
   ForbiddenException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import {
@@ -23,5 +24,20 @@ export class ExceptionsService implements IException {
   }
   UnauthorizedException(data?: IFormatExceptionMessage): void {
     throw new UnauthorizedException(data);
+  }
+  unauthorizedException(data?: IFormatExceptionMessage): void {
+    throw new UnauthorizedException(data);
+  }
+  expiredTokenException(): void {
+    throw new UnauthorizedException('Token expired exception');
+  }
+  notFoundUserException(): void {
+    throw new NotFoundException('User not found exception');
+  }
+  notConfirmPasswordException(): void {
+    throw new ForbiddenException('Not confirm password exception');
+  }
+  userAlreadyExistException(): void {
+    throw new BadRequestException('User already exist exception');
   }
 }
