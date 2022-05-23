@@ -9,4 +9,8 @@ export class CommentReportM {
 
   @Expose({ name: 'comment_id' })
   commentId: number;
+
+  constructor(obj) {
+    return Object.assign(this, obj);
+  }
 }
