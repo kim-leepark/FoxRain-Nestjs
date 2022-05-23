@@ -1,1 +1,3 @@
-export interface PostRepository {}
+export interface PostRepository {
+  findOne(postId: number);
+}
