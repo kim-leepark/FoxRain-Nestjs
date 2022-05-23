@@ -3,9 +3,11 @@ import { REQUEST } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { IUserReqeust } from 'src/domain/interfaces/request.interface';
 import { CommentM } from 'src/domain/model/comment';
+import { CommentReportM } from 'src/domain/model/comment-report';
 import { CommentReportUsecase } from 'src/usecase/comment/comment-report';
 import { CreateCommentUsecase } from 'src/usecase/comment/create-comment';
 import { GetCommentListUsecase } from 'src/usecase/comment/get-comment-list';
+import { ReportedCommentReasonsListUsecase } from 'src/usecase/comment/reported-comment-reasons-list';
 
 @Controller({ path: '/comment', scope: Scope.REQUEST })
 export class CommnetController {
@@ -16,6 +18,8 @@ export class CommnetController {
     private readonly getCommentListUsecase: GetCommentListUsecase,
     @Inject(CommentReportUsecase)
     private readonly commentReportUsecase: CommentReportUsecase,
+    @Inject(ReportedCommentReasonsListUsecase)
+    private readonly reportedCommentReasonsListUsecase: ReportedCommentReasonsListUsecase,
     @Inject(REQUEST)
     private readonly request: IUserReqeust,
   ) {}
@@ -41,5 +45,10 @@ export class CommnetController {
   @HttpCode(HttpStatus.CREATED)
   commentReport(@Body('content') content: string, @Param('commentId', ParseIntPipe) commentId: number) {
     return this.commentReportUsecase.execute(content, commentId, this.request.user.sub);
+  }
+
+  @Get('/:commentId/report/reasons')
+  reportedCommentReasonsList(@Param('commentId', ParseIntPipe) commentId: number): Promise<CommentReportM[]> {
+    return this.reportedCommentReasonsListUsecase.execute(commentId);
   }
 }
