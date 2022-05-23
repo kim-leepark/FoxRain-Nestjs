@@ -9,4 +9,5 @@ export interface UserRepository {
     page: number,
     size: number,
   ): Promise<GetUserInfoPresenter[]>;
+  findUser(userId: number);
 }
