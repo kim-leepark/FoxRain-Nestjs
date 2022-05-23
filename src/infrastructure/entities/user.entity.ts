@@ -14,6 +14,9 @@ export class UserTypeOrmEntity {
   @Column({ length: 30 })
   name: string;
 
+  @Column({ length: 255 })
+  password: string;
+
   @OneToMany(() => CommentTypeOrmEntity, (comment) => comment.user)
   comments: CommentTypeOrmEntity[];
 
