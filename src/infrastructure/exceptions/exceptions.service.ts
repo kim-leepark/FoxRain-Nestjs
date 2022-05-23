@@ -42,4 +42,7 @@ export class ExceptionsService implements IException {
   reportedCommentReasonsNotFoundException(): void {
     throw new NotFoundException('Reported comment reasons not found exception');
   }
+  reportedCommentNotFoundException(): void {
+    throw new NotFoundException('Reported comment not found exception');
+  }
 }

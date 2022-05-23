@@ -17,4 +17,5 @@ export interface IException {
   commentNotFoundException(): void;
   alreadyReportedCommentException(): void;
   reportedCommentReasonsNotFoundException(): void;
+  reportedCommentNotFoundException(): void;
 }
