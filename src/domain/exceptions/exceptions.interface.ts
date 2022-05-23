@@ -14,4 +14,5 @@ export interface IException {
   postNotFoundException(): void;
   notConfirmPasswordException(): void;
   userAlreadyExistException(): void;
+  commentNotFoundException(): void;
 }
