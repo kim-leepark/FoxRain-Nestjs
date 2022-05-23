@@ -10,7 +10,8 @@ export interface IException {
   UnauthorizedException(data?: IFormatExceptionMessage): void;
   expiredTokenException(): void;
   unauthorizedException(data?: IFormatExceptionMessage): void;
-  notFoundUserException(): void;
+  userNotFoundException(): void;
+  postNotFoundException(): void;
   notConfirmPasswordException(): void;
   userAlreadyExistException(): void;
 }
