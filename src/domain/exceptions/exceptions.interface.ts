@@ -8,4 +8,9 @@ export interface IException {
   internalServerErrorException(data?: IFormatExceptionMessage): void;
   forbiddenException(data?: IFormatExceptionMessage): void;
   UnauthorizedException(data?: IFormatExceptionMessage): void;
+  expiredTokenException(): void;
+  unauthorizedException(data?: IFormatExceptionMessage): void;
+  notFoundUserException(): void;
+  notConfirmPasswordException(): void;
+  userAlreadyExistException(): void;
 }
