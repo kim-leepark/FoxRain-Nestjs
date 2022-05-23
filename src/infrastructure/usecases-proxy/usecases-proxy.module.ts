@@ -3,6 +3,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { CommentReportUsecase } from 'src/usecase/comment/comment-report';
 import { CreateCommentUsecase } from 'src/usecase/comment/create-comment';
 import { GetCommentListUsecase } from 'src/usecase/comment/get-comment-list';
+import { ReportedCommentReasonsListUsecase } from 'src/usecase/comment/reported-comment-reasons-list';
 import { LoginUsecase } from 'src/usecase/user/login';
 import { SignUpUsecase } from 'src/usecase/user/sign-up';
 import { UserInfoUsecase } from 'src/usecase/user/user-info';
@@ -62,8 +63,22 @@ export class UsecasesProxyDynamicModule {
           useFactory: (databaseCommentReportRepository: DatabaseCommentReportRepository, exceptionsService: ExceptionsService) =>
             new CommentReportUsecase(databaseCommentReportRepository, exceptionsService),
         },
+        {
+          inject: [DatabaseCommentReportRepository, ExceptionsService],
+          provide: ReportedCommentReasonsListUsecase,
+          useFactory: (databaseCommentReportRepository: DatabaseCommentReportRepository, exceptionsService: ExceptionsService) =>
+            new ReportedCommentReasonsListUsecase(databaseCommentReportRepository, exceptionsService),
+        },
       ],
-      exports: [SignUpUsecase, LoginUsecase, UserInfoUsecase, CreateCommentUsecase, GetCommentListUsecase, CommentReportUsecase],
+      exports: [
+        SignUpUsecase,
+        LoginUsecase,
+        UserInfoUsecase,
+        CreateCommentUsecase,
+        GetCommentListUsecase,
+        CommentReportUsecase,
+        ReportedCommentReasonsListUsecase,
+      ],
     };
   }
 }
