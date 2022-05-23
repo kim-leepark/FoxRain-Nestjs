@@ -4,6 +4,7 @@ import { CommentReportUsecase } from 'src/usecase/comment/comment-report';
 import { CreateCommentUsecase } from 'src/usecase/comment/create-comment';
 import { GetCommentListUsecase } from 'src/usecase/comment/get-comment-list';
 import { ReportedCommentReasonsListUsecase } from 'src/usecase/comment/reported-comment-reasons-list';
+import { ReportedCommentListUsecase } from 'src/usecase/comment_report/reported-comment-list';
 import { LoginUsecase } from 'src/usecase/user/login';
 import { SignUpUsecase } from 'src/usecase/user/sign-up';
 import { UserInfoUsecase } from 'src/usecase/user/user-info';
@@ -69,6 +70,12 @@ export class UsecasesProxyDynamicModule {
           useFactory: (databaseCommentReportRepository: DatabaseCommentReportRepository, exceptionsService: ExceptionsService) =>
             new ReportedCommentReasonsListUsecase(databaseCommentReportRepository, exceptionsService),
         },
+        {
+          inject: [DatabaseCommentReportRepository, ExceptionsService],
+          provide: ReportedCommentListUsecase,
+          useFactory: (databaseCommentReportRepository: DatabaseCommentReportRepository, exceptionsService: ExceptionsService) =>
+            new ReportedCommentListUsecase(databaseCommentReportRepository, exceptionsService),
+        },
       ],
       exports: [
         SignUpUsecase,
@@ -78,6 +85,7 @@ export class UsecasesProxyDynamicModule {
         GetCommentListUsecase,
         CommentReportUsecase,
         ReportedCommentReasonsListUsecase,
+        ReportedCommentListUsecase,
       ],
     };
   }
