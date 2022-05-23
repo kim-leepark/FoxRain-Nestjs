@@ -1,5 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { CommentReportUsecase } from 'src/usecase/comment/comment-report';
 import { CreateCommentUsecase } from 'src/usecase/comment/create-comment';
 import { GetCommentListUsecase } from 'src/usecase/comment/get-comment-list';
 import { LoginUsecase } from 'src/usecase/user/login';
@@ -8,6 +9,7 @@ import { UserInfoUsecase } from 'src/usecase/user/user-info';
 import { ExceptionsModule } from '../exceptions/exceptions.module';
 import { ExceptionsService } from '../exceptions/exceptions.service';
 import { LoggerModule } from '../logger/logger.module';
+import { DatabaseCommentReportRepository } from '../repositories/comment-report.repotiroty';
 import { DatabaseCommentRepository } from '../repositories/comment.repotiroty';
 import { DatabasePostRepository } from '../repositories/post.repotiroty';
 import { RepositoriesModule } from '../repositories/repositories.module';
@@ -54,8 +56,14 @@ export class UsecasesProxyDynamicModule {
           useFactory: (databaseCommentRepository: DatabaseCommentRepository, exceptionsService: ExceptionsService) =>
             new GetCommentListUsecase(databaseCommentRepository, exceptionsService),
         },
+        {
+          inject: [DatabaseCommentReportRepository, ExceptionsService],
+          provide: CommentReportUsecase,
+          useFactory: (databaseCommentReportRepository: DatabaseCommentReportRepository, exceptionsService: ExceptionsService) =>
+            new CommentReportUsecase(databaseCommentReportRepository, exceptionsService),
+        },
       ],
-      exports: [SignUpUsecase, LoginUsecase, UserInfoUsecase, CreateCommentUsecase, GetCommentListUsecase],
+      exports: [SignUpUsecase, LoginUsecase, UserInfoUsecase, CreateCommentUsecase, GetCommentListUsecase, CommentReportUsecase],
     };
   }
 }
