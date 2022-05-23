@@ -1,15 +1,5 @@
-import {
-  BadRequestException,
-  ForbiddenException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
-import {
-  IException,
-  IFormatExceptionMessage,
-} from '../../domain/exceptions/exceptions.interface';
+import { BadRequestException, ForbiddenException, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { IException, IFormatExceptionMessage } from '../../domain/exceptions/exceptions.interface';
 
 @Injectable()
 export class ExceptionsService implements IException {
@@ -42,5 +32,8 @@ export class ExceptionsService implements IException {
   }
   userAlreadyExistException(): void {
     throw new BadRequestException('User already exist exception');
+  }
+  commentNotFoundException(): void {
+    throw new NotFoundException('Comment not found exception');
   }
 }
