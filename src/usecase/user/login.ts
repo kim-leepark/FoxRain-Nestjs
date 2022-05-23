@@ -1,5 +1,5 @@
 import { IException } from 'src/domain/exceptions/exceptions.interface';
-import { User } from 'src/domain/model/user';
+import { UserM } from 'src/domain/model/user';
 import { UserRepository } from 'src/domain/repositories/user.repository';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -13,7 +13,7 @@ export class LoginUsecase {
   ) {}
 
   async execute(request: LoginDto) {
-    const user: User = await this.userRepositoy.findOne(request.email);
+    const user: UserM = await this.userRepositoy.findOne(request.email);
     const confirmPassword: boolean = await bcrypt.compare(
       request.password,
       user.password,
