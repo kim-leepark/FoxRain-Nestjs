@@ -36,4 +36,7 @@ export class ExceptionsService implements IException {
   commentNotFoundException(): void {
     throw new NotFoundException('Comment not found exception');
   }
+  alreadyReportedCommentException(): void {
+    throw new BadRequestException('Already reported comment exception');
+  }
 }
