@@ -16,4 +16,5 @@ export interface IException {
   userAlreadyExistException(): void;
   commentNotFoundException(): void;
   alreadyReportedCommentException(): void;
+  reportedCommentReasonsNotFoundException(): void;
 }
