@@ -1,12 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { CommentReportTypeOrmEntity } from './comment-report.entity';
 import { PostTypeOrmEntity } from './post.entity';
 import { UserTypeOrmEntity } from './user.entity';
@@ -30,9 +22,6 @@ export class CommentTypeOrmEntity {
   @JoinColumn({ name: 'post_id' })
   post: PostTypeOrmEntity;
 
-  @OneToMany(
-    () => CommentReportTypeOrmEntity,
-    (comment_report) => comment_report.comment,
-  )
+  @OneToMany(() => CommentReportTypeOrmEntity, (comment_report) => comment_report.comment)
   comment_report: CommentReportTypeOrmEntity[];
 }

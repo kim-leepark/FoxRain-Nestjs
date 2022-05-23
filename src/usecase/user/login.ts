@@ -6,18 +6,11 @@ import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from '../../presentation/user/user.dto';
 
 export class LoginUsecase {
-  constructor(
-    private readonly userRepositoy: UserRepository,
-    private readonly exceptionsService: IException,
-    private readonly jwtService: JwtService,
-  ) {}
+  constructor(private readonly userRepositoy: UserRepository, private readonly exceptionsService: IException, private readonly jwtService: JwtService) {}
 
   async execute(request: LoginDto) {
     const user: UserM = await this.userRepositoy.findOne(request.email);
-    const confirmPassword: boolean = await bcrypt.compare(
-      request.password,
-      user.password,
-    );
+    const confirmPassword: boolean = await bcrypt.compare(request.password, user.password);
 
     if (!user) this.exceptionsService.userNotFoundException();
     if (!confirmPassword) this.exceptionsService.notConfirmPasswordException();

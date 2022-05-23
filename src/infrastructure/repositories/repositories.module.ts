@@ -11,26 +11,8 @@ import { DatabasePostRepository } from './post.repotiroty';
 import { DatabaseUserRepository } from './user.repotiroty';
 
 @Module({
-  imports: [
-    TypeOrmConfigModule,
-    TypeOrmModule.forFeature([
-      UserTypeOrmEntity,
-      CommentTypeOrmEntity,
-      CommentReportTypeOrmEntity,
-      PostTypeOrmEntity,
-    ]),
-  ],
-  providers: [
-    DatabaseCommentReportRepository,
-    DatabaseCommentRepository,
-    DatabasePostRepository,
-    DatabaseUserRepository,
-  ],
-  exports: [
-    DatabaseCommentReportRepository,
-    DatabaseCommentRepository,
-    DatabasePostRepository,
-    DatabaseUserRepository,
-  ],
+  imports: [TypeOrmConfigModule, TypeOrmModule.forFeature([UserTypeOrmEntity, CommentTypeOrmEntity, CommentReportTypeOrmEntity, PostTypeOrmEntity])],
+  providers: [DatabaseCommentReportRepository, DatabaseCommentRepository, DatabasePostRepository, DatabaseUserRepository],
+  exports: [DatabaseCommentReportRepository, DatabaseCommentRepository, DatabasePostRepository, DatabaseUserRepository],
 })
 export class RepositoriesModule {}

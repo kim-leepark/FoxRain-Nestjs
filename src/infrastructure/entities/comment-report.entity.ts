@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CommentTypeOrmEntity } from './comment.entity';
 import { PostTypeOrmEntity } from './post.entity';
 import { UserTypeOrmEntity } from './user.entity';

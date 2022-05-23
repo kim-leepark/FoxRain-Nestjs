@@ -4,10 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { SignUpDto } from '../../presentation/user/user.dto';
 
 export class SignUpUsecase {
-  constructor(
-    private readonly userRepositoy: UserRepository,
-    private readonly exceptionsService: IException,
-  ) {}
+  constructor(private readonly userRepositoy: UserRepository, private readonly exceptionsService: IException) {}
 
   async execute(request: SignUpDto) {
     const user = await this.userRepositoy.findOne(request.email);

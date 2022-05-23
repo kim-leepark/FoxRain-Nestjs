@@ -20,10 +20,7 @@ export class UserTypeOrmEntity {
   @OneToMany(() => CommentTypeOrmEntity, (comment) => comment.user)
   comments: CommentTypeOrmEntity[];
 
-  @OneToMany(
-    () => CommentReportTypeOrmEntity,
-    (comment_report) => comment_report.user,
-  )
+  @OneToMany(() => CommentReportTypeOrmEntity, (comment_report) => comment_report.user)
   comment_report: CommentReportTypeOrmEntity[];
 
   @OneToMany(() => PostTypeOrmEntity, (post) => post.user)

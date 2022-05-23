@@ -24,11 +24,7 @@ export class DatabaseUserRepository implements UserRepository {
     this.userEntityRepository.save(user);
   }
 
-  async userInfo(
-    userId: number,
-    page: number,
-    size: number,
-  ): Promise<GetUserInfoPresenter[]> {
+  async userInfo(userId: number, page: number, size: number): Promise<GetUserInfoPresenter[]> {
     const userInfo: any[] = await this.userEntityRepository
       .createQueryBuilder('user')
       .leftJoin('user.posts', 'post')
