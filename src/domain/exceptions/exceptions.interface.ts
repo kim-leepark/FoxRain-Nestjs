@@ -15,4 +15,5 @@ export interface IException {
   notConfirmPasswordException(): void;
   userAlreadyExistException(): void;
   commentNotFoundException(): void;
+  alreadyReportedCommentException(): void;
 }
