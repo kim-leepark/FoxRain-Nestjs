@@ -52,4 +52,19 @@ export class DatabaseCommentReportRepository implements CommentReportRepository 
 
     return reportedCommentReasons.map((reportedCommentReason) => new CommentReportM(reportedCommentReason));
   }
+
+  async reportedCommentList(page: number, size: number): Promise<CommentReportM[]> {
+    const reportedCommentList: any[] = await this.commentReportEntityRepository
+      .createQueryBuilder('comment_report')
+      .leftJoin('comment_report.comment', 'comment')
+      .select('comment.id', 'commentId')
+      .addSelect('comment.content', 'content')
+      .addSelect('COUNT(distinct comment.id)', 'reportedNum')
+      .offset((page - 1) * size)
+      .limit(size)
+      .groupBy('comment_report.id')
+      .getRawMany();
+
+    return reportedCommentList.map((reportedComment) => new CommentReportM(reportedComment));
+  }
 }
