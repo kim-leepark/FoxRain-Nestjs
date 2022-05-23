@@ -19,10 +19,10 @@ export class LoginUsecase {
       user.password,
     );
 
-    if (!user) this.exceptionsService.notFoundUserException();
+    if (!user) this.exceptionsService.userNotFoundException();
     if (!confirmPassword) this.exceptionsService.notConfirmPasswordException();
 
-    const payload = { userId: user.id, type: 'access' };
+    const payload = { sub: user.id, type: 'access' };
 
     return { access_token: this.jwtService.sign(payload) };
   }
