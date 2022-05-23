@@ -10,4 +10,8 @@ export class DatabasePostRepository implements PostRepository {
     @InjectRepository(PostTypeOrmEntity)
     private readonly postEntityRepository: Repository<PostTypeOrmEntity>,
   ) {}
+
+  findOne(postId: number) {
+    return this.postEntityRepository.findOne({ id: postId });
+  }
 }
