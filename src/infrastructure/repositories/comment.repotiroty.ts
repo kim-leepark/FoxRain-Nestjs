@@ -35,6 +35,8 @@ export class DatabaseCommentRepository implements CommentRepository {
   async findCommentList(postId: number, page: number, size: number): Promise<CommentM[]> {
     const comments: any[] = await this.commentEntityRepository
       .createQueryBuilder('comment')
+      .leftJoin('comment.post', 'post')
+      .leftJoin('comment.comment_report', 'commentReport')
       .select('comment.content', 'content')
       .addSelect('SUBSTR(comment.created_at, 1, 10)', 'createdAt')
       .addSelect('commentReport.id', 'reportedComment')
@@ -42,8 +44,6 @@ export class DatabaseCommentRepository implements CommentRepository {
       .limit(size)
       .where('post.id = :id', { id: postId })
       .orderBy('comment.created_at', 'DESC')
-      .leftJoin('comment.post', 'post')
-      .leftJoin('comment.comment_report', 'commentReport')
       .groupBy('comment.id')
       .getRawMany();
 
