@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class CommentReport {
+export class CommentReportM {
   id: number;
   content: string;
 
