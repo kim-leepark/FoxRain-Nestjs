@@ -15,7 +15,7 @@ export class UserInfoUsecase {
   ): Promise<GetUserInfoPresenter[]> {
     const userInfo = await this.userRepository.userInfo(userId, page, size);
 
-    if (userInfo.length === 0) this.exceptionService.notFoundUserException();
+    if (userInfo.length === 0) this.exceptionService.userNotFoundException();
 
     return userInfo;
   }
