@@ -37,4 +37,19 @@ export class DatabaseCommentReportRepository implements CommentReportRepository 
       comment,
     });
   }
+
+  async reportedCommentReasonsList(commentId: number): Promise<CommentReportM[]> {
+    const reportedCommentReasons: any[] = await this.commentReportEntityRepository
+      .createQueryBuilder('comment_report')
+      .leftJoin('comment_report.comment', 'comment')
+      .leftJoin('comment_report.user', 'user')
+      .select('comment.id', 'commentId')
+      .addSelect('comment_report.content', 'content')
+      .addSelect('user.id', 'userId')
+      .addSelect('user.name', 'name')
+      .where('comment_report.comment_id = :comment_id', { comment_id: commentId })
+      .getRawMany();
+
+    return reportedCommentReasons.map((reportedCommentReason) => new CommentReportM(reportedCommentReason));
+  }
 }
