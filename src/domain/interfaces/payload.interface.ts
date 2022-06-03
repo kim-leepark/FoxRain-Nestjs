@@ -1,4 +1,6 @@
 export interface IJwtPayload {
-  sub: number;
+  sub: string;
+  email: string;
+  id: number;
   type: 'access' | 'refresh';
 }
