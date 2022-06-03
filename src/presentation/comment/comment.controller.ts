@@ -28,7 +28,7 @@ export class CommnetController {
   @Post('/:postId')
   @HttpCode(HttpStatus.CREATED)
   createComment(@Body('content') content: string, @Param('postId', ParseIntPipe) postId: number) {
-    return this.createCommentUsecase.execute(content, postId, this.request.user.sub);
+    return this.createCommentUsecase.execute(content, postId, this.request.user.id);
   }
 
   @Get('/:postId')
@@ -44,7 +44,7 @@ export class CommnetController {
   @Post('/:commentId/report')
   @HttpCode(HttpStatus.CREATED)
   commentReport(@Body('content') content: string, @Param('commentId', ParseIntPipe) commentId: number) {
-    return this.commentReportUsecase.execute(content, commentId, this.request.user.sub);
+    return this.commentReportUsecase.execute(content, commentId, this.request.user.id);
   }
 
   @Get('/:commentId/report/reasons')
