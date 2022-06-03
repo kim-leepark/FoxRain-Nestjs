@@ -7,13 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './infrastructure/common/strategies/jwt.strategy';
 
 @Module({
-  imports: [
-    LoggerModule,
-    ExceptionsModule,
-    RepositoriesModule,
-    ControllersModule,
-    JwtModule.register({}),
-  ],
+  imports: [LoggerModule, ExceptionsModule, RepositoriesModule, ControllersModule, JwtModule.register({})],
   providers: [JwtStrategy],
 })
 export class AppModule {}
