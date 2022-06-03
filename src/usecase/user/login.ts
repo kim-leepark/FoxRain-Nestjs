@@ -15,8 +15,8 @@ export class LoginUsecase {
     if (!user) this.exceptionsService.userNotFoundException();
     if (!confirmPassword) this.exceptionsService.notConfirmPasswordException();
 
-    const payload = { sub: user.id, type: 'access' };
+    const payload = { sub: 'user', type: 'access', id: user.id, email: user.email };
 
-    return { access_token: this.jwtService.sign(payload) };
+    return { access_token: this.jwtService.sign(payload), userId: user.id };
   }
 }
