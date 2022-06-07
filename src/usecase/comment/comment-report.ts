@@ -7,8 +7,6 @@ export class CommentReportUsecase {
   async execute(content: string, commentId: number, userId: number) {
     const reportedComment = await this.commentReportRepository.findOne(commentId, userId);
 
-    console.log(reportedComment);
-
     if (reportedComment) this.exceptionsService.alreadyReportedCommentException();
 
     this.commentReportRepository.commentReport(content, commentId, userId);
