@@ -7,10 +7,10 @@ export class PostTypeOrmEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 40 })
+  @Column({ type: 'text' })
   title: string;
 
-  @Column({ length: 50 })
+  @Column({ type: 'text' })
   content: string;
 
   @CreateDateColumn()
