@@ -18,7 +18,11 @@ export class DatabaseCommentReportRepository implements CommentReportRepository 
     private readonly userEntityRepository: Repository<UserTypeOrmEntity>,
   ) {}
 
-  async findOne(commentId: number, userId: number) {
+  async findOne(commentId: number) {
+    return this.commentEntityRepository.findOne({ id: commentId });
+  }
+
+  async findComment(commentId: number, userId: number) {
     return await this.commentReportEntityRepository
       .createQueryBuilder('comment_report')
       .select()
