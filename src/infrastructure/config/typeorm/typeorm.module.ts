@@ -12,7 +12,7 @@ export const getTypeOrmModuleOptions = (config: DatabaseConfig): TypeOrmModuleOp
     username: config.getDatabaseUser(),
     password: config.getDatabasePassword(),
     database: config.getDatabaseName(),
-    synchronize: process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'test' ? true : false,
+    synchronize: false,
     logging: process.env.NODE_ENV === 'local' || process.env.NODE_ENV === 'test' ? true : false,
     entities: [__dirname + './../../**/*.entity{.ts,.js}'],
   } as TypeOrmModuleOptions);
